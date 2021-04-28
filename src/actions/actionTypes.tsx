@@ -1,0 +1,4 @@
+export const FETCH_META_DATA = 'FETCH_META_DATA';
+export const FETCH_CAR_LIST = 'FETCH_CAR_LIST';
+export const FETCH_CAR_DETAILS = 'FETCH_CAR_DETAILS';
+export const SAVE_TO_CART = 'SAVE_TO_CART';
