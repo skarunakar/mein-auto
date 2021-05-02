@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
-import metatdata from './metadata';
+import filters from './filters';
+import cars from './cars';
 
 const rootReducer = combineReducers({
-    metatdata,
+    filters,
+    cars,
     
 });
 

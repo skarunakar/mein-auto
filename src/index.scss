@@ -1,0 +1,30 @@
+@import './styles/';
+
+
+html {
+  font-size: 10px; /* Now 10px = 1rem! */
+  height: 100%;
+}
+
+body {
+  height: 100%;
+  font-size: $font-size-normal; /* default font-size for document */
+  line-height: 1.5; /* a nice line-height */
+  font-family: $font-regular;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+
+html, 
+body {
+  height: auto;
+  min-height: 100vh;
+}
+
+#content {
+  min-height: 100%;
+}
