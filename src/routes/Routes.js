@@ -12,8 +12,8 @@ class Routes extends React.Component {
   render() {
      return (
       <Switch>
-        <Route exact path='/' component={CarList} />
-        <Route exact path={`/cars/:stockNumber`} component={CarDetails} />
+        <Route exact patch='/' component={CarList} />
+        <Route exact path={`/car/:stockNumber`} component={CarDetails} />
         <Route path='*' component={PageNotFoundError}/>
       </Switch>
     )

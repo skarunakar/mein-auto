@@ -1,6 +1,12 @@
 import ACTION_TYPES from './actionTypes';
+
+//utils
 import getDataFromResponse from '../utils/getDataFromResponse';
+
+//services
 import { getManufacturers, getColors } from "../services/carsInfo";
+
+//reader
 import colorsReader from '../readers/colors';
 import manufacturersReader from '../readers/manufacturers';
 
@@ -26,14 +32,24 @@ const saveManufacturers = (dispatch) => (manufacturersResponse) => {
     })
 
 }
-export const fetchColors = () =>  {
+export function fetchColors()  {
     return function(dispatch){
         getColors().then(saveColors(dispatch))
     }
 }
 
-export const fetchManufacturers = () =>  {
+export function fetchManufacturers()  {
     return function(dispatch){
-        getManufacturers.then(saveManufacturers(dispatch))
+        getManufacturers().then(saveManufacturers(dispatch))
+    }
+}
+
+export function setFilters (payload) {
+    return function(dispatch){
+        dispatch({
+            type: ACTION_TYPES.SET_FILTERS,
+            payload,
+        })
+        
     }
 }

@@ -3,15 +3,16 @@ const initialState = {
     colors: [],
     manufacturers: [],
     filterState: {
-      color: undefined,
-      manufacturer: undefined,
-      sort: 'asc'
+      color: '',
+      manufacturer: '',
+      sort: 'asc',
+      page: 1,
     }
 }
 
-const metadata = (state = initialState, action) => {
+const filters = (state = initialState, action) => {
   switch(action.type) {
-    case ACTION_TYPES.FETCH_COLOR: return {
+    case ACTION_TYPES.FETCH_COLORS: return {
         ...state,
       colors: action?.payload?.colors,
     };
@@ -19,8 +20,15 @@ const metadata = (state = initialState, action) => {
       ...state,
       manufacturers: action?.payload?.manufacturers,
   };
+  case ACTION_TYPES.SET_FILTERS: return {
+    ...state,
+    filterState: {
+      ...state.filterState,
+      ...action?.payload
+    }
+  }
     default: return state;
   }
 }
 
-export default metadata;
+export default filters;

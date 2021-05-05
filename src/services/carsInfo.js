@@ -1,6 +1,6 @@
 import http from './http';
 
-export const getCars = queryString => http.get(`api/cars?${queryString}`);
+export const getCars = (queryString = '') => http.get(`api/cars?${queryString}`);
 
 export const getColors = ( queryString = '')  => http.get(`api/colors?${queryString}`);
 

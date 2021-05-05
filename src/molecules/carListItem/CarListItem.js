@@ -1,27 +1,50 @@
 import React from 'react';
 import {
-    Button
+    Card,
+    CardContent,
+    CardMedia,
+    makeStyles,
 } from '@material-ui/core';
+import { Link as RouterLink } from 'react-router-dom'
+import carReader from '../../readers/car';
 
-import { isItemInFavoriteList } from './carListItem.helper';
+
+const useStyles = makeStyles({
+    root: {
+        display: 'flex',
+        width: '78rem',
+        height: '10.9rem',
+        padding: '1.2rem',
+        margin: '0.6rem',
+    },
+    content: {
+        padding: 0
+    },    
+    img: {
+        width: '10rem',
+        height: '8rem',
+    }
+})
 
 const CarListItem = (props) => {
-    const favoriteList = localStorage.getItem('favorites');
-    const isFavoriteItem = isItemInFavoriteList(favoriteList);
+    const classes = useStyles();
+    const { car } = props;
+    const stockNumber = carReader.stockNumber(car);
+    const mileage = carReader.mileage(car);
+    const fuelType = carReader.fuelType(car);
+    const color = carReader.color(car);
+    const manufacturerName = carReader.manufacturerName(car);
+    const modelName = carReader.modelName(car);
+    const pictureUrl = carReader.pictureUrl(car)
 
-    return (<div>
-        <div>
-            <img />
-        </div>
-        <div>
-            <div></div>
-            <div>
-                <Button onClick={}>
-                  { isFavoriteItem ? Save : Remove }
-                </Button>
-            </div>
-        </div>
-    </div>)
+    return (<Card className={classes.root} variant="outlined">
+        <CardMedia className={classes.img} image={pictureUrl}/>
+        <CardContent className={classes.content}>
+            <h1>{manufacturerName} {modelName}</h1>
+            <h3>Stock {stockNumber} - {mileage}KM - {fuelType} - {color}</h3>
+            <RouterLink  to={`/car/${stockNumber}`}>View Details</RouterLink>
+        </CardContent>
+    </Card>)
 }
 
 export default CarListItem;

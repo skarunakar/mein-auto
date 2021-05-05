@@ -1,27 +1,53 @@
 import ACTION_TYPES from './actionTypes';
+
+//utils
 import getDataFromResponse from '../utils/getDataFromResponse';
-import { getCars } from "../services/carsInfo";
-import carsReader from '../readers/cars';
+import { getCarListQueryString } from '../utils/getQueryString';
+
+//services
+import { getCars, getCarByStockNumber } from "../services/carsInfo";
+
+//readers
+import carListReader from '../readers/carList';
+import carByStockNumberReader from '../readers/carByStockNumber';
+import { cars } from '../services/mock';
 
 const saveCarList = (dispatch) => (carsRepsonse) => {
     const carsData = getDataFromResponse(carsRepsonse);
-    const cars = carsReader.colors(carsData);
+    const carList = carListReader.cars(carsData);
+    const totalPageCount = carListReader.totalPageCount(carsData);
+    const totalCarsCount = carListReader.totalCarsCount(carsData);
     dispatch({
         type: ACTION_TYPES.FETCH_CAR_LIST,
         payload: {
-            cars,
+            carList,
+            totalPageCount,
+            totalCarsCount,
         }
     })
 }
 
-export const fetchCarList = () =>  {
+const saveCarDetails = (dispatch) => (carDetailsRepsonse) => {
+    const carData = getDataFromResponse(carDetailsRepsonse);
+    const carDetails = carByStockNumberReader.car(carData);
+    dispatch({
+        type: ACTION_TYPES.FETCH_CAR_DETAILS,
+        payload: {
+            carDetails,
+        }
+    })
+}
+
+export const fetchCarList = (filterState) =>  {
     return function(dispatch){
-        getCars().then(saveCarList(dispatch))
+        const queryString = getCarListQueryString(filterState);
+        getCars(queryString).then(saveCarList(dispatch))
+        .catch(() => saveCarList(dispatch)(cars))
     }
 }
 
-export const fetchCarDetails = () =>  {
+export const fetchCarDetails = (stockNumber, queryString) =>  {
     return function(dispatch){
-        //getManufacturers.then(saveManufacturers(dispatch))
+        getCarByStockNumber(stockNumber, queryString).then(saveCarDetails(dispatch))
     }
 }

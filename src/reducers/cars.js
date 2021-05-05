@@ -7,18 +7,20 @@ const initialState = {
 
 const cars = (state = initialState, action) => {
     switch(action.type) {
-        case ACTION_TYPES.FETCH_CAR_LIST: {
+        case ACTION_TYPES.FETCH_CAR_LIST: 
             return {
                 ...state,
-                cars: state?.payload?.cars
+                carList: action?.payload?.carList,
+                totalPageCount: action?.payload?.totalPageCount,
+                totalCarsCount: action?.payload?.totalCarsCount,
             }
-        };
-        case ACTION_TYPES.FETCH_CAR_DETAILS: {
+        
+        case ACTION_TYPES.FETCH_CAR_DETAILS: 
             return {
                 ...state,
-                car: state?.payload?.car
+                carDetails: action?.payload?.carDetails
             }
-        };
+        
         default: return state;
     }
 }
