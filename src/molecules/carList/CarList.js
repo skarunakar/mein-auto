@@ -1,10 +1,12 @@
 import { useEffect, useCallback } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import _noop from 'lodash/noop';
 
 //components
 import Filters from '../filters';
 import CarListItem from '../carListItem';
-import { Grid } from '@material-ui/core';
+import { Grid, Container, LinearProgress } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';
 
 //helpers
@@ -17,45 +19,47 @@ import useStyle from './carList.style';
 
 const renderCarListItem = (carList) => {
   const carListCount = carList.length;
-  return carListCount ? carList.map((car) => <CarListItem key={carReader.stockNumber(car)}car={car}/>) :  <> </>;
+  return carListCount ? carList.map((car) => <CarListItem key={carReader.stockNumber(car)}car={car}/>) :  <LinearProgress />;
 }
 
 const CarList = (props) => {
     const {
         carList,
-        page,
         totalCarsCount,
         fetchCarList,
         filterState,
         totalPageCount,
+        setFilters,
     } = props;
-
+    const { page } = filterState;
     useEffect(() => {
         fetchCarList(filterState);
-    }, []); 
+    }, [page]); 
 
     const handlePageChange = useCallback((event, page) => {
         setFilters({page});
-        fetchCarList(filterState)
-    }, [fetchCarList, filterState]);
+    }, [filterState]);
     
     const classes = useStyle();
     return (
-    <Grid container className={classes.root}>
-        <Grid item xs={12} md={4}><Filters /></Grid>
-        <Grid item xs={12} md={8}>
-            <h1>Available Cars</h1>
-            <h3>Showing {10} of {totalCarsCount} results</h3>
+        <Container className={classes.root}>
+          <Grid container>
+          <Grid item xs={12} md={4}><Filters /></Grid>
+          <Grid item xs={12} md={8} className={classes.gridItem}>
+            <div className={classes.listHeader}>Available Cars</div>
+            <div>Showing { page !== totalPageCount ? 10 : totalCarsCount - ((page-1) * 10 ) } of {totalCarsCount} results</div>
             {renderCarListItem(carList)}
             <Pagination 
               page={page}
               showFirstButton
               showLastButton
               count={totalPageCount}
+              className={classes.paginationContainer}
               onChange={handlePageChange}
             />
-        </Grid>
-    </Grid>)
+           </Grid>
+          </Grid>
+        </Container>)
 }
 
 const mapDispatchToProps = {
@@ -68,6 +72,25 @@ const mapStateToProps = (state) => ({
     totalCarsCount: state.cars.totalCarsCount,
     totalPageCount: state.cars.totalPageCount,
     filterState: state.filters.filterState
-})
+});
+
+CarList.propTypes = {
+  carList: PropTypes.array, 
+  fetchCarList: PropTypes.func,
+  setFilters: PropTypes.func,
+  filterState: PropTypes.object,
+  totalCarsCount: PropTypes.number,
+  totalPageCount: PropTypes.number,
+
+}
+
+CarList.defaultProps = {
+  carList: [],
+  setFilters: _noop,
+  fetchCarList: _noop,
+  filterState: {},
+  totalCarsCount: undefined,
+  totalPageCount: undefined,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(CarList);

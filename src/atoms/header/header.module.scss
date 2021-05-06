@@ -5,16 +5,15 @@
 }
 
 .headerContainer {
-    height: 9rem;
+    height: 8rem;
     padding: 2.4rem;
     @include flex($justify-content: space-between);
     border-bottom: 0.1rem solid lightGrey;
 }
 .rightheaderPanel {
-    display: flex;
-}
-
-a {
-    text-decoration: none;
-    color: $darkGrey;
+    align-self: center;
+    a {
+        color: $darkGrey;
+        margin-left: 3rem;
+    }
 }

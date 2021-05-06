@@ -1,6 +1,8 @@
 
 import { useCallback, useEffect } from 'react';
 import { connect } from 'react-redux'; 
+import PropTypes from 'prop-types';
+import _noop from 'lodash/noop';
 import {
     Button,
     Select,
@@ -12,7 +14,6 @@ import {
 import { fetchCarList } from '../../actions/cars';
 import { fetchColors, fetchManufacturers, setFilters } from '../../actions/filters'
 
-import style from './filters.module.scss';
 import useStyles from './filters.style';
 
 const Filters = (props) => {
@@ -28,22 +29,24 @@ const Filters = (props) => {
     } = props;
     const { color, manufacturer } = filterState;
     const handleCarChange = (event) => {
-      setFilters({color: event.target.value});
+      setFilters({color: event.target.value, page: 1});
     }
     const handleManufacturerChange = (event) => {
-      setFilters({manufacturer: event.target.value});
+      setFilters({manufacturer: event.target.value, page:1});
     }
     useEffect(() => {
       fetchColors();
       fetchManufacturers();
-    }, []);
+    }, [fetchColors, fetchManufacturers]);
 
-    const handleSubmit = useCallback(() => {
+    const handleSubmit = useCallback((event) => {
+      event.preventDefault();
       fetchCarList(filterState);
     },[fetchCarList, filterState])
 
     return(
-    <form onSubmit={handleSubmit} className={style.formContainer}>
+    <form onSubmit={handleSubmit} className={classes.formContainer}>
+        <div>Filter</div>
         <FormControl className={classes.formControl}>
           <InputLabel shrink={true}>Color</InputLabel>
           <Select
@@ -52,11 +55,12 @@ const Filters = (props) => {
             className={classes.select}
             onChange={handleCarChange}
           >
-            <MenuItem value={""}>All car colors</MenuItem>
+            <MenuItem value={""} className={classes.menuItem}>All car colors</MenuItem>
             {
               colors.map((color) => <MenuItem 
               key={color}
               value={color}
+              className={classes.menuItem}
               >{color}</MenuItem>)
             }
           </Select>
@@ -70,10 +74,14 @@ const Filters = (props) => {
             className={classes.select}
             onChange={handleManufacturerChange}
           >
-            <MenuItem value={""}>All manufacturers</MenuItem>
+            <MenuItem value={""} className={classes.menuItem}>All manufacturers</MenuItem>
             {
               manufacturers.map((manufacturer) => 
-              <MenuItem key={manufacturer.name} value={manufacturer.name}>
+              <MenuItem 
+                key={manufacturer.name}
+                value={manufacturer.name}
+                className={classes.menuItem}
+              >
                 {manufacturer.name}
               </MenuItem>)
             }
@@ -96,5 +104,25 @@ const mapStateToProps = (state) => ({
     manufacturers: state.filters.manufacturers,
     filterState: state.filters.filterState
 })
+
+
+Filters.propTypes = {
+  colors: PropTypes.array, 
+  manufacturers: PropTypes.array, 
+  fetchCarList: PropTypes.func,
+  fetchColors: PropTypes.func,
+  fetchManufacturers: PropTypes.func,
+  filterState: PropTypes.object,
+}
+
+Filters.defaultProps = {
+  colors: [],
+  manufacturers: [],
+  setFilters: _noop,
+  fetchCarList: _noop,
+  fetchColors: _noop,
+  fetchManufacturers: _noop,
+  filterState: {},
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Filters);

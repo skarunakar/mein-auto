@@ -2,4 +2,14 @@
 
 .errorContainer{
     @include flex-center($flex-flow: column);
+    margin-top: 24rem;
+}
+
+.logo {
+    width: 18.5rem;
+    height: 4rem;
+}
+
+.errorDetail {
+    font-size: $font-size-large;
 }

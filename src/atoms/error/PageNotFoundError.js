@@ -5,10 +5,10 @@ import style from './pageNotFoundError.module.scss'
 
 const PageNotFoundError = () => {
     return (<div className={style.errorContainer}>
-        <img  src={logo} alt='logo' />
-        <h3>404 - Not Found</h3>
-        <h5>Sorry, the page you are looking for does not exist</h5>
-        <h5>You Can always go back to the <a href='/'>homepage</a></h5>
+        <img className={style.logo} src={logo} alt='logo' />
+        <h1>404 - Not Found</h1>
+        <div className={style.errorDetail}>Sorry, the page you are looking for does not exist</div>
+        <div className={style.errorDetail}>You can always go back to the <a href='/'>homepage</a></div>
     </div>)
 
 }

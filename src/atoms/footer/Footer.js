@@ -8,7 +8,7 @@ const useStyles = makeStyles(() => ({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    height: '9rem',
+    height: '8rem',
     fontSize: '1.4rem',
   }
 }));

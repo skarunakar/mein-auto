@@ -1,9 +1,0 @@
-@import '../../styles/';
-
-.formContainer {
-    @include flex($flex-flow: column);
-    width: 35rem;
-    margin: 2.4rem;
-    border: 0.1rem solid $lightGrey;
-    padding: 2.4rem;
-}

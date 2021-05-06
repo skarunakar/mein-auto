@@ -10,7 +10,6 @@ import { getCars, getCarByStockNumber } from "../services/carsInfo";
 //readers
 import carListReader from '../readers/carList';
 import carByStockNumberReader from '../readers/carByStockNumber';
-import { cars } from '../services/mock';
 
 const saveCarList = (dispatch) => (carsRepsonse) => {
     const carsData = getDataFromResponse(carsRepsonse);
@@ -42,7 +41,6 @@ export const fetchCarList = (filterState) =>  {
     return function(dispatch){
         const queryString = getCarListQueryString(filterState);
         getCars(queryString).then(saveCarList(dispatch))
-        .catch(() => saveCarList(dispatch)(cars))
     }
 }
 

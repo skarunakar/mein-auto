@@ -1,19 +1,23 @@
 import { useEffect, useState } from 'react';
+import PropTypes from 'prop-types';
 import { useParams } from 'react-router-dom';
 import _filter from 'lodash/filter';
 import { connect } from 'react-redux';
+import _noop from 'lodash/noop';
 
 //components
 import {
+    Grid,
     Button,
     CardMedia,
-    makeStyles,
+    Container,
 } from '@material-ui/core';
 
 //helpers
 import { isItemInFavoriteList } from './carDetails.helper';
 import { fetchCarDetails } from '../../actions/cars';
 import carReader from '../../readers/car';
+import useStyles from './carDetails.style'
 
 const handleUpdateFavorites = (action, stockNumber, setFavoriteItem) => () => {
     let favoriteList = JSON.parse(localStorage.getItem('favorites')) || [];
@@ -27,13 +31,6 @@ const handleUpdateFavorites = (action, stockNumber, setFavoriteItem) => () => {
     localStorage.setItem('favorites', JSON.stringify(favoriteList));
     setFavoriteItem(isActionSave);
 }
-
-const useStyles = makeStyles({
-    img: {
-        backgroundSize:'contain',
-        height: '39rem'
-    }
-});
 
 const CarDetails = (props) => {
     const { stockNumber } = useParams();
@@ -50,29 +47,31 @@ const CarDetails = (props) => {
 
     useEffect(() => {
         fetchCarDetails(stockNumber);
-    });
+    }, []);
 
     return (<div>
         <div>
             <CardMedia  className={classes.img} image={pictureUrl}/>
         </div>
-        <div>
-            <div>
-            <h1>{manufacturerName} {modelName}</h1>
-            <h3>Stock {stockNumber} - {mileage}KM - {fuelType} - {color}</h3>
-            <div>This car is currently available and can be delivered as soon as
+        <Container className={classes.detailsContainer}>
+            <Grid item>
+            <div className={classes.itemTitle}>{manufacturerName} {modelName}</div>
+            <div className={classes.itemSubTitle}>Stock {stockNumber} - {mileage}KM - {fuelType} - {color}</div>
+            <div className={classes.prodAvailability}>
+                This car is currently available and can be delivered as soon as
                 tomorrow morning. Please be aware that delivery times shown in
                 this page are not definitive and may change due to bad weather
-                conditions.</div>
+                conditions.
             </div>
-            <div>
-                <div>If you like this car, click the button and save it in your
+            </Grid>
+            <Grid item className={classes.saveContainer}>
+                <div >If you like this car, click the button and save it in your
                   collection of favorite items.</div>
-                <Button onClick={handleUpdateFavorites(isFavoriteItem ? 'Remove' : 'Save', stockNumber, setFavoriteItem)}>
+                <Button className={classes.button} onClick={handleUpdateFavorites(isFavoriteItem ? 'Remove' : 'Save', stockNumber, setFavoriteItem)}>
                   { isFavoriteItem ? 'Remove' : 'Save' }
                 </Button>
-            </div>
-        </div>
+            </Grid>
+        </Container>
     </div>)
 
 }
@@ -84,4 +83,14 @@ const mapDispatchToProps = {
 const mapStateToProps = (state) => ({
     car: state.cars.carDetails
 })
+
+CarDetails.propTypes = {
+    car: PropTypes.array,
+    fetchCarDetails: PropTypes.func,
+};
+
+CarDetails.defaultProps = {
+    car: [],
+    fetchCarDetails: _noop,
+};
 export default connect(mapStateToProps, mapDispatchToProps)(CarDetails);

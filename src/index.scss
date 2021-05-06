@@ -2,14 +2,13 @@
 
 
 html {
-  font-size: 10px; /* Now 10px = 1rem! */
+  font-size: 10px;
   height: 100%;
 }
 
-body {
-  height: 100%;
-  font-size: $font-size-normal; /* default font-size for document */
-  line-height: 1.5; /* a nice line-height */
+html body {
+  font-size: $font-size-normal;
+  line-height: 1.5;
   font-family: $font-regular;
   box-sizing: border-box;
   text-rendering: optimizeLegibility;
@@ -17,14 +16,14 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-
-
-html, 
-body {
-  height: auto;
-  min-height: 100vh;
+html body a {
+  color: $lightOrange;
+  text-decoration: none;
+  &:hover {
+    color: $darkOrange;
+  }
 }
 
 #content {
-  min-height: 100%;
+  min-height: 100vh;
 }
