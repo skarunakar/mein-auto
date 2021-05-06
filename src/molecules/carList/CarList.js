@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import _noop from 'lodash/noop';
 
 //components
-import Filters from '../filters';
+import Filters from '../filters/Filters';
 import CarListItem from '../carListItem';
 import { Grid, Container, LinearProgress } from '@material-ui/core';
 import { Pagination } from '@material-ui/lab';

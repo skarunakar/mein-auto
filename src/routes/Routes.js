@@ -10,8 +10,8 @@ import PageNotFoundError from '../atoms/error';
 function Routes () {
   return (
     <Switch>
-        <Route exact path='/' component={CarList}/>
-        <Route exact path={`/car/:stockNumber`} component={CarDetails} />
+        <Route exact path='/mein-auto' component={CarList}/>
+        <Route exact path={`/mein-auto/car/:stockNumber`} component={CarDetails} />
         <Route path='*' component={PageNotFoundError}/>
     </Switch>
     )

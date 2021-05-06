@@ -46,17 +46,17 @@ const CarListItem = (props) => {
         <CardContent className={classes.content}>
             <div className={classes.itemTitle}>{manufacturerName} {modelName}</div>
             <div>Stock # {stockNumber} - {mileage}KM - {fuelType} - {color}</div>
-            <RouterLink  to={`/car/${stockNumber}`}>View Details</RouterLink>
+            <RouterLink  to={`/mein-auto/car/${stockNumber}`}>View Details</RouterLink>
         </CardContent>
     </Card>)
 }
 
 CarListItem.propTypes = {
-    car: PropTypes.array,
+    car: PropTypes.object,
 };
 
 CarListItem.defaultProps = {
-    car: [],
+    car: {},
 };
 
 export default CarListItem;

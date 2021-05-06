@@ -6,11 +6,11 @@ import style from './header.module.scss';
 const Header = () => {
     return (
     <div className={style.headerContainer}>
-        <a href='/'><img className={style.logo} src={logo} alt="mein-auto" /></a>
+        <a href='/mein-auto'><img className={style.logo} src={logo} alt="mein-auto" /></a>
         <div className={style.rightheaderPanel}>
-           <a href='/purchase'>Purchase</a>
-           <a href='/myOrders'>My Orders</a>
-           <a href='/sell'>Sell</a>
+           <a href='/mein-auto/purchase'>Purchase</a>
+           <a href='/mein-auto/myOrders'>My Orders</a>
+           <a href='/mein-auto/sell'>Sell</a>
         </div>
     </div>
     );

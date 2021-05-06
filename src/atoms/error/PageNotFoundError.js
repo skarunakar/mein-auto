@@ -8,7 +8,7 @@ const PageNotFoundError = () => {
         <img className={style.logo} src={logo} alt='logo' />
         <h1>404 - Not Found</h1>
         <div className={style.errorDetail}>Sorry, the page you are looking for does not exist</div>
-        <div className={style.errorDetail}>You can always go back to the <a href='/'>homepage</a></div>
+        <div className={style.errorDetail}>You can always go back to the <a href='/mein-auto'>homepage</a></div>
     </div>)
 
 }

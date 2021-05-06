@@ -37,13 +37,12 @@ const Filters = (props) => {
     useEffect(() => {
       fetchColors();
       fetchManufacturers();
-    }, [fetchColors, fetchManufacturers]);
+    }, []);
 
     const handleSubmit = useCallback((event) => {
       event.preventDefault();
       fetchCarList(filterState);
     },[fetchCarList, filterState])
-
     return(
     <form onSubmit={handleSubmit} className={classes.formContainer}>
         <div>Filter</div>
@@ -51,6 +50,7 @@ const Filters = (props) => {
           <InputLabel shrink={true}>Color</InputLabel>
           <Select
             displayEmpty
+            data-testid="car-filter-select"
             value={color || ""}
             className={classes.select}
             onChange={handleCarChange}
@@ -71,6 +71,7 @@ const Filters = (props) => {
           <Select
             value={manufacturer || ""}
             displayEmpty
+            data-testid="manufacturer-filter-select"
             className={classes.select}
             onChange={handleManufacturerChange}
           >
@@ -87,7 +88,14 @@ const Filters = (props) => {
             }
           </Select>
         </FormControl>
-        <Button className={classes.button} type="submit" variant="contained" color="primary">Filter</Button>
+        <Button className={classes.button}
+          type="submit"
+          data-testid="filter-button"
+          variant="contained"
+          color="primary"
+        >
+          Filter
+        </Button>
     </form>
     )
 }
