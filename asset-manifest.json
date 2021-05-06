@@ -1,0 +1,21 @@
+{
+  "files": {
+    "main.css": "/mein-auto/static/css/main.7cc27238.chunk.css",
+    "main.js": "/mein-auto/static/js/main.e029ca5a.chunk.js",
+    "main.js.map": "/mein-auto/static/js/main.e029ca5a.chunk.js.map",
+    "runtime-main.js": "/mein-auto/static/js/runtime-main.cf0469f8.js",
+    "runtime-main.js.map": "/mein-auto/static/js/runtime-main.cf0469f8.js.map",
+    "static/js/2.e9a633ef.chunk.js": "/mein-auto/static/js/2.e9a633ef.chunk.js",
+    "static/js/2.e9a633ef.chunk.js.map": "/mein-auto/static/js/2.e9a633ef.chunk.js.map",
+    "index.html": "/mein-auto/index.html",
+    "static/css/main.7cc27238.chunk.css.map": "/mein-auto/static/css/main.7cc27238.chunk.css.map",
+    "static/js/2.e9a633ef.chunk.js.LICENSE.txt": "/mein-auto/static/js/2.e9a633ef.chunk.js.LICENSE.txt",
+    "static/media/logo.242ab3b0.svg": "/mein-auto/static/media/logo.242ab3b0.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cf0469f8.js",
+    "static/js/2.e9a633ef.chunk.js",
+    "static/css/main.7cc27238.chunk.css",
+    "static/js/main.e029ca5a.chunk.js"
+  ]
+}
