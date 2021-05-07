@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/mein-auto/static/css/main.7cc27238.chunk.css",
-    "main.js": "/mein-auto/static/js/main.13c82de4.chunk.js",
-    "main.js.map": "/mein-auto/static/js/main.13c82de4.chunk.js.map",
+    "main.js": "/mein-auto/static/js/main.490be179.chunk.js",
+    "main.js.map": "/mein-auto/static/js/main.490be179.chunk.js.map",
     "runtime-main.js": "/mein-auto/static/js/runtime-main.cf0469f8.js",
     "runtime-main.js.map": "/mein-auto/static/js/runtime-main.cf0469f8.js.map",
     "static/js/2.9e18d41a.chunk.js": "/mein-auto/static/js/2.9e18d41a.chunk.js",
@@ -16,6 +16,6 @@
     "static/js/runtime-main.cf0469f8.js",
     "static/js/2.9e18d41a.chunk.js",
     "static/css/main.7cc27238.chunk.css",
-    "static/js/main.13c82de4.chunk.js"
+    "static/js/main.490be179.chunk.js"
   ]
 }
