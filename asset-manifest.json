@@ -1,21 +1,21 @@
 {
   "files": {
     "main.css": "/mein-auto/static/css/main.7cc27238.chunk.css",
-    "main.js": "/mein-auto/static/js/main.e4ee9b01.chunk.js",
-    "main.js.map": "/mein-auto/static/js/main.e4ee9b01.chunk.js.map",
+    "main.js": "/mein-auto/static/js/main.609c7545.chunk.js",
+    "main.js.map": "/mein-auto/static/js/main.609c7545.chunk.js.map",
     "runtime-main.js": "/mein-auto/static/js/runtime-main.cf0469f8.js",
     "runtime-main.js.map": "/mein-auto/static/js/runtime-main.cf0469f8.js.map",
-    "static/js/2.04d72911.chunk.js": "/mein-auto/static/js/2.04d72911.chunk.js",
-    "static/js/2.04d72911.chunk.js.map": "/mein-auto/static/js/2.04d72911.chunk.js.map",
+    "static/js/2.273deb3f.chunk.js": "/mein-auto/static/js/2.273deb3f.chunk.js",
+    "static/js/2.273deb3f.chunk.js.map": "/mein-auto/static/js/2.273deb3f.chunk.js.map",
     "index.html": "/mein-auto/index.html",
     "static/css/main.7cc27238.chunk.css.map": "/mein-auto/static/css/main.7cc27238.chunk.css.map",
-    "static/js/2.04d72911.chunk.js.LICENSE.txt": "/mein-auto/static/js/2.04d72911.chunk.js.LICENSE.txt",
+    "static/js/2.273deb3f.chunk.js.LICENSE.txt": "/mein-auto/static/js/2.273deb3f.chunk.js.LICENSE.txt",
     "static/media/logo.242ab3b0.svg": "/mein-auto/static/media/logo.242ab3b0.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.cf0469f8.js",
-    "static/js/2.04d72911.chunk.js",
+    "static/js/2.273deb3f.chunk.js",
     "static/css/main.7cc27238.chunk.css",
-    "static/js/main.e4ee9b01.chunk.js"
+    "static/js/main.609c7545.chunk.js"
   ]
 }
