@@ -3,7 +3,7 @@ import { cars } from '../../services/mock';
 
 import { render } from '@testing-library/react';
 
-import { BrowserRouter as Router } from 'react-router-dom';
+import { HashRouter as Router } from 'react-router-dom';
 
 //redux
 import configureStore from 'redux-mock-store';

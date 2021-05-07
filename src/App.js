@@ -1,5 +1,5 @@
 
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { HashRouter as Router, Switch, Route } from 'react-router-dom';
 
 //components
 import Routes from './routes';
@@ -15,7 +15,7 @@ function App()  {
   return (
     <Provider store={store}>
       <CssBaseline />
-      <Router>
+      <Router basename='/'>
         <Header />
         <main id='content'>
           <Switch>

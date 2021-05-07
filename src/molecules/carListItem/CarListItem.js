@@ -49,7 +49,7 @@ const CarListItem = (props) => {
         <CardContent className={classes.content}>
             <div className={classes.itemTitle}>{manufacturerName} {modelName}</div>
             <div  className={classes.subTitle}>Stock # {stockNumber} - {mileage}KM - {fuelType} - {color}</div>
-            <RouterLink  to={`/mein-auto/car/${stockNumber}`}>View Details</RouterLink>
+            <RouterLink  to={`/car/${stockNumber}`}>View Details</RouterLink>
         </CardContent>
     </Card>)
 }
