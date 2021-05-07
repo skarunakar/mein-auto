@@ -33,6 +33,7 @@ const useStyles = makeStyles((theme) => ({
         fontWeight: 700,
         fontSize: '1.8rem',
         margin: '1.2rem 0',
+        textTransform: 'capitalize',
     },
     button: {
         width: '12.8rem',

@@ -7,7 +7,7 @@ const READER = {
     color: _property('color'),
     fuelType: _property('fuelType'),
     pictureUrl: _property('pictureUrl'),
-    mileage: _property('milage'),
+    mileage: _property('mileage'),
 }
 
 export default READER;

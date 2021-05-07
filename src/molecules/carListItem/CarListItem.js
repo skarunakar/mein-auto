@@ -5,9 +5,8 @@ import {
     makeStyles,
 } from '@material-ui/core';
 import PropTypes from 'prop-types';
-import { Link as RouterLink } from 'react-router-dom'
-import carReader from '../../readers/car';
-
+import { Link as RouterLink } from 'react-router-dom';
+import getCarDetails from '../../utils/getCarDetails';
 
 const useStyles = makeStyles({
     root: {
@@ -36,19 +35,22 @@ const useStyles = makeStyles({
 const CarListItem = (props) => {
     const classes = useStyles();
     const { car } = props;
-    const stockNumber = carReader.stockNumber(car);
-    const mileage = carReader.mileage(car);
-    const fuelType = carReader.fuelType(car);
-    const color = carReader.color(car);
-    const manufacturerName = carReader.manufacturerName(car);
-    const modelName = carReader.modelName(car);
-    const pictureUrl = carReader.pictureUrl(car)
+    const {
+        number,
+        unit,
+        fuelType,
+        color,
+        manufacturerName,
+        modelName,
+        pictureUrl,
+        stockNumber,
+    } = getCarDetails(car);
 
     return (<Card className={classes.root} variant="outlined">
         <CardMedia className={classes.img} image={pictureUrl}/>
         <CardContent className={classes.content}>
             <div className={classes.itemTitle}>{manufacturerName} {modelName}</div>
-            <div  className={classes.subTitle}>Stock # {stockNumber} - {mileage}KM - {fuelType} - {color}</div>
+            <div  className={classes.subTitle}>Stock # {stockNumber} - {number} {unit} - {fuelType} - {color}</div>
             <RouterLink  to={`/car/${stockNumber}`}>View Details</RouterLink>
         </CardContent>
     </Card>)

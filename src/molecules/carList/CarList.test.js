@@ -1,7 +1,7 @@
 import CarList from './CarList';
 import { cars } from '../../services/mock';
 
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 
 import { HashRouter as Router } from 'react-router-dom';
 
@@ -16,24 +16,25 @@ describe('CarList Component', () => {
     let fetchCarList;
     let setFilters;
     let store;
+    const initialStore = {
+      filters: {
+        filterState: {
+            page: 1,
+            sort: 'asc'
+        },
+      },
+      cars: {
+          carList: cars,
+          totalCarsCount: 1000,
+          totalPageCount: 10,
+          isLoading: false,
+      },
+    };
     beforeEach(() => {
-        store = mockStore({
-          filters: {
-            filterState: {
-                page: 1,
-                sort: 'asc'
-            },
-          },
-          cars: {
-              carList: cars,
-              totalCarsCount: 1000,
-              totalPageCount: 10,
-              isLoading: false,
-          },
-        });
+        store = mockStore(initialStore);
       });
   
-    function renderCarListComponent(props, mockStore = store) {
+    function renderCarListComponent(props = {}, mockStore = store) {
       fetchCarList = jest.fn(() => Promise.resolve()).mockName('fetchCarList');
       setFilters = jest.fn(() => Promise.resolve()).mockName('setFilters');
       return render(
@@ -41,9 +42,6 @@ describe('CarList Component', () => {
            <CarList
           fetchCarList={fetchCarList}
           setFilters={setFilters}
-          filterState={{ page: 1, sort: 'asc' }}
-          carList={cars}
-          error={false}
           {...props}
         />
         </Provider>,
@@ -51,20 +49,14 @@ describe('CarList Component', () => {
       );
     }
     test('renders loader while api fetch', () => {
-        const overrideStore = mockStore({
-          filters: {
-            filterState: {
-                page: 1,
-                sort: 'asc'
-            },
-          },
+        const storeValue = {
+          ...initialStore,
           cars: {
-              carList: cars,
-              totalCarsCount: 1000,
-              totalPageCount: 10,
-              isLoading: true,
-          },
-        });
+            ...initialStore.cars,
+            isLoading: true,
+          }
+        }
+        const overrideStore = mockStore(storeValue);
         const { queryByText } = renderCarListComponent({carList:[]}, overrideStore);;
         expect(queryByText(`Showing 10 of 1000 results`)).toBeNull();
     });
@@ -76,9 +68,25 @@ describe('CarList Component', () => {
       const { queryByText } = renderCarListComponent({isLoading: true});
       expect(queryByText(`Showing 10 of 1000 results`)).not.toBeNull();
     });
-    test('renders 10 CarListItem on page 2 for 1000 cars', () => {
-      const filterState = { page: 2, sort: 'asc'};
-      const { queryByText }  = renderCarListComponent({filterState, isLoading: true});
-      expect(queryByText(`Showing 10 of 1000 results`)).not.toBeNull();
+    test('renders 2 CarListItem on page 1 for 3 cars', () => {
+      const carList2 = cars.slice(0,12);
+      const storeValue = {
+        filters: {
+          ...initialStore.filters,
+          filterState: {
+            ...initialStore.filters.filterState,
+            page: 2
+          }
+        },
+        cars: {
+          ...initialStore.cars,
+          carList: carList2,
+          totalCarsCount: 13,
+          totalPageCount: 2,
+        }
+      }
+      const overrideStore = mockStore(storeValue);
+      const { queryByText }  = renderCarListComponent(undefined, overrideStore);
+      expect(queryByText(`Showing 3 of 13 results`)).not.toBeNull();
     });
 });

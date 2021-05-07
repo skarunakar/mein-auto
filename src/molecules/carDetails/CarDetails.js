@@ -15,8 +15,8 @@ import {
 
 //helpers
 import { isItemInFavoriteList } from './carDetails.helper';
+import getCarDetails from '../../utils/getCarDetails';
 import { fetchCarDetails } from '../../actions/cars';
-import carReader from '../../readers/car';
 import useStyles from './carDetails.style'
 
 const handleUpdateFavorites = (action, stockNumber, setFavoriteItem) => () => {
@@ -38,12 +38,15 @@ const CarDetails = (props) => {
     const [ isFavoriteItem, setFavoriteItem ] = useState(isItemInFavoriteList(favoriteList, stockNumber));
     const classes = useStyles();
     const { car, fetchCarDetails } = props;
-    const mileage = carReader.mileage(car);
-    const fuelType = carReader.fuelType(car);
-    const color = carReader.color(car);
-    const manufacturerName = carReader.manufacturerName(car);
-    const modelName = carReader.modelName(car);
-    const pictureUrl = carReader.pictureUrl(car);
+    const {
+        number,
+        unit,
+        fuelType,
+        color,
+        manufacturerName,
+        modelName,
+        pictureUrl,
+    } = getCarDetails(car);
 
     useEffect(() => {
         fetchCarDetails(stockNumber);
@@ -56,7 +59,7 @@ const CarDetails = (props) => {
         <Container className={classes.detailsContainer}>
             <Grid item>
             <div className={classes.itemTitle}>{manufacturerName} {modelName}</div>
-            <div className={classes.itemSubTitle}>Stock {stockNumber} - {mileage}KM - {fuelType} - {color}</div>
+            <div className={classes.itemSubTitle}>Stock {stockNumber} - {number} {unit} - {fuelType} - {color}</div>
             <div className={classes.prodAvailability}>
                 This car is currently available and can be delivered as soon as
                 tomorrow morning. Please be aware that delivery times shown in

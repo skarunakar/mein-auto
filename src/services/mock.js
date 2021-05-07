@@ -1,86 +1,122 @@
 export const  cars = [
   {
-    "stockNumber": 40410,
-    "manufacturerName": "Audi",
-    "modelName": "TT Roadster",
-    "color": "red",
+    "stockNumber": 64590,
+    "manufacturerName": "Fiat",
+    "modelName": "Scudo",
+    "color": "white",
     "mileage": {
-      "number": 122202,
+      "number": 101307,
+      "unit": "km"
+    },
+    "fuelType": "Petrol",
+    "pictureUrl": "https://auto1-js-task-api--mufasa71.repl.co/images/car.svg"
+  },
+  {
+    "stockNumber": 46339,
+    "manufacturerName": "Fiat",
+    "modelName": "500L",
+    "color": "white",
+    "mileage": {
+      "number": 101931,
+      "unit": "km"
+    },
+    "fuelType": "Petrol",
+    "pictureUrl": "https://auto1-js-task-api--mufasa71.repl.co/images/car.svg"
+  },
+  {
+    "stockNumber": 83092,
+    "manufacturerName": "Fiat",
+    "modelName": "124 Sport/Spider",
+    "color": "white",
+    "mileage": {
+      "number": 106907,
+      "unit": "km"
+    },
+    "fuelType": "Petrol",
+    "pictureUrl": "https://auto1-js-task-api--mufasa71.repl.co/images/car.svg"
+  },
+  {
+    "stockNumber": 34284,
+    "manufacturerName": "Fiat",
+    "modelName": "Freemont",
+    "color": "white",
+    "mileage": {
+      "number": 112329,
       "unit": "km"
     },
     "fuelType": "Diesel",
     "pictureUrl": "https://auto1-js-task-api--mufasa71.repl.co/images/car.svg"
   },
   {
-    "stockNumber": 78026,
-    "manufacturerName": "Audi",
-    "modelName": "Q2",
-    "color": "red",
+    "stockNumber": 78491,
+    "manufacturerName": "Fiat",
+    "modelName": "126",
+    "color": "white",
     "mileage": {
-      "number": 124700,
+      "number": 112859,
       "unit": "km"
     },
     "fuelType": "Diesel",
     "pictureUrl": "https://auto1-js-task-api--mufasa71.repl.co/images/car.svg"
   },
   {
-    "stockNumber": 13700,
-    "manufacturerName": "Audi",
-    "modelName": "Q2",
-    "color": "red",
+    "stockNumber": 70803,
+    "manufacturerName": "Fiat",
+    "modelName": "Tipo",
+    "color": "white",
     "mileage": {
-      "number": 127404,
+      "number": 115188,
       "unit": "km"
     },
     "fuelType": "Diesel",
     "pictureUrl": "https://auto1-js-task-api--mufasa71.repl.co/images/car.svg"
   },
   {
-    "stockNumber": 89264,
-    "manufacturerName": "Audi",
-    "modelName": "V8",
-    "color": "red",
+    "stockNumber": 66580,
+    "manufacturerName": "Fiat",
+    "modelName": "Barchetta",
+    "color": "white",
     "mileage": {
-      "number": 132188,
+      "number": 139740,
       "unit": "km"
     },
     "fuelType": "Diesel",
     "pictureUrl": "https://auto1-js-task-api--mufasa71.repl.co/images/car.svg"
   },
   {
-    "stockNumber": 48523,
-    "manufacturerName": "Audi",
-    "modelName": "80/90",
-    "color": "red",
+    "stockNumber": 52873,
+    "manufacturerName": "Fiat",
+    "modelName": "Ducato",
+    "color": "white",
     "mileage": {
-      "number": 139647,
+      "number": 144216,
       "unit": "km"
     },
     "fuelType": "Diesel",
     "pictureUrl": "https://auto1-js-task-api--mufasa71.repl.co/images/car.svg"
   },
   {
-    "stockNumber": 62102,
-    "manufacturerName": "Audi",
-    "modelName": "Q3",
-    "color": "red",
+    "stockNumber": 26131,
+    "manufacturerName": "Fiat",
+    "modelName": "126",
+    "color": "white",
     "mileage": {
-      "number": 156882,
+      "number": 149649,
       "unit": "km"
     },
     "fuelType": "Diesel",
     "pictureUrl": "https://auto1-js-task-api--mufasa71.repl.co/images/car.svg"
   },
   {
-    "stockNumber": 71952,
-    "manufacturerName": "Audi",
-    "modelName": "A5",
-    "color": "red",
+    "stockNumber": 79103,
+    "manufacturerName": "Fiat",
+    "modelName": "Seicento",
+    "color": "white",
     "mileage": {
-      "number": 195439,
+      "number": 157729,
       "unit": "km"
     },
-    "fuelType": "Diesel",
+    "fuelType": "Petrol",
     "pictureUrl": "https://auto1-js-task-api--mufasa71.repl.co/images/car.svg"
   }
 ];
