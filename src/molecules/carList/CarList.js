@@ -17,10 +17,7 @@ import carReader from '../../readers/car';
 
 import useStyle from './carList.style';
 
-const renderCarListItem = (carList) => {
-  const carListCount = carList.length;
-  return carListCount ? carList.map((car) => <CarListItem key={carReader.stockNumber(car)}car={car}/>) :  <LinearProgress />;
-}
+const renderCarListItem = (carList) => carList.map((car) => <CarListItem key={carReader.stockNumber(car)}car={car}/>)
 
 const CarList = (props) => {
     const {
@@ -30,6 +27,7 @@ const CarList = (props) => {
         filterState,
         totalPageCount,
         setFilters,
+        isLoading
     } = props;
     const { page } = filterState;
     useEffect(() => {
@@ -46,17 +44,20 @@ const CarList = (props) => {
           <Grid container>
           <Grid item xs={12} md={4}><Filters /></Grid>
           <Grid item xs={12} md={8} className={classes.gridItem}>
-            <div className={classes.listHeader}>Available Cars</div>
-            <div>Showing { page !== totalPageCount ? 10 : totalCarsCount - ((page-1) * 10 ) } of {totalCarsCount} results</div>
-            {renderCarListItem(carList)}
-            <Pagination 
-              page={page}
-              showFirstButton
-              showLastButton
-              count={totalPageCount}
-              className={classes.paginationContainer}
-              onChange={handlePageChange}
-            />
+            {
+              isLoading ? <LinearProgress /> : 
+              <><div className={classes.listHeader}>Available Cars</div>
+              <div>{`Showing ${ page !== totalPageCount ? 10 : totalCarsCount - ((page-1) * 10 ) } of ${totalCarsCount} results`}</div>
+              {renderCarListItem(carList)}
+              <Pagination 
+                page={page}
+                showFirstButton
+                showLastButton
+                count={totalPageCount}
+                className={classes.paginationContainer}
+                onChange={handlePageChange}
+              /></>
+            }
            </Grid>
           </Grid>
         </Container>)
@@ -71,6 +72,7 @@ const mapStateToProps = (state) => ({
     carList: state.cars.carList,
     totalCarsCount: state.cars.totalCarsCount,
     totalPageCount: state.cars.totalPageCount,
+    isLoading: state.cars.isLoading,
     filterState: state.filters.filterState
 });
 
@@ -81,6 +83,7 @@ CarList.propTypes = {
   filterState: PropTypes.object,
   totalCarsCount: PropTypes.number,
   totalPageCount: PropTypes.number,
+  isLoading: PropTypes.bool,
 
 }
 

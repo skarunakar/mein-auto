@@ -23,7 +23,10 @@ const useStyles = makeStyles({
     itemTitle: {
         fontWeight: 700,
         fontSize: '3.2rem'
-    },  
+    },
+    subTitle: {
+        textTransform: 'capitalize',
+    },
     img: {
         width: '10rem',
         height: '8rem',
@@ -45,7 +48,7 @@ const CarListItem = (props) => {
         <CardMedia className={classes.img} image={pictureUrl}/>
         <CardContent className={classes.content}>
             <div className={classes.itemTitle}>{manufacturerName} {modelName}</div>
-            <div>Stock # {stockNumber} - {mileage}KM - {fuelType} - {color}</div>
+            <div  className={classes.subTitle}>Stock # {stockNumber} - {mileage}KM - {fuelType} - {color}</div>
             <RouterLink  to={`/mein-auto/car/${stockNumber}`}>View Details</RouterLink>
         </CardContent>
     </Card>)

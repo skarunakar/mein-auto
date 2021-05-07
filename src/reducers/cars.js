@@ -3,6 +3,7 @@ import ACTION_TYPES from '../actions/actionTypes';
 const initialState = {
     carList: [],
     page: 1,
+    isLoading: true,
 }
 
 const cars = (state = initialState, action) => {
@@ -13,6 +14,7 @@ const cars = (state = initialState, action) => {
                 carList: action?.payload?.carList,
                 totalPageCount: action?.payload?.totalPageCount,
                 totalCarsCount: action?.payload?.totalCarsCount,
+                isLoading: false,
             }
         
         case ACTION_TYPES.FETCH_CAR_DETAILS: 
