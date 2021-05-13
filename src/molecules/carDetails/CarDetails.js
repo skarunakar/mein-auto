@@ -70,7 +70,7 @@ const CarDetails = (props) => {
             <Grid item className={classes.saveContainer}>
                 <div >If you like this car, click the button and save it in your
                   collection of favorite items.</div>
-                <Button className={classes.button} onClick={handleUpdateFavorites(isFavoriteItem ? 'Remove' : 'Save', stockNumber, setFavoriteItem)}>
+                <Button className={classes.button} onClick={handleUpdateFavorites(isFavoriteItem ? 'Remove' : 'Save', stockNumber, setFavoriteItem)} data-testid="add-to-favorites">
                   { isFavoriteItem ? 'Remove' : 'Save' }
                 </Button>
             </Grid>
@@ -88,7 +88,7 @@ const mapStateToProps = (state) => ({
 })
 
 CarDetails.propTypes = {
-    car: PropTypes.array,
+    car: PropTypes.object,
     fetchCarDetails: PropTypes.func,
 };
 
