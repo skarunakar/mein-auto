@@ -16,8 +16,9 @@ import { setFilters } from '../../actions/filters';
 import carReader from '../../readers/car';
 
 import useStyle from './carList.style';
+import { CarDetails } from '../../interfaces.constants';
 
-const renderCarListItem = (carList) => carList.map((car) => <CarListItem key={carReader.stockNumber(car)}car={car}/>)
+const renderCarListItem = (carList) => carList.map((car: CarDetails) => <CarListItem key={carReader.stockNumber(car)}car={car}/>)
 
 const CarList = (props) => {
     const {

@@ -1,7 +1,8 @@
 import carReader from '../readers/car';
 import mileageReader from '../readers/mileage';
+import { Car } from '../interfaces.constants';
 
-function getCarDetails (car) {
+function getCarDetails (car: Car) {
     const mileage = carReader.mileage(car);
     const number = mileageReader.number(mileage); 
     const unit = mileageReader.unit(mileage);

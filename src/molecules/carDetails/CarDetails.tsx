@@ -18,9 +18,11 @@ import { isItemInFavoriteList } from './carDetails.helper';
 import getCarDetails from '../../utils/getCarDetails';
 import { fetchCarDetails } from '../../actions/cars';
 import useStyles from './carDetails.style'
+import { RootReducerSate } from '../../reducers';
+import { CarDetailsInterface } from '../../interfaces.constants';
 
-const handleUpdateFavorites = (action, stockNumber, setFavoriteItem) => () => {
-    let favoriteList = JSON.parse(localStorage.getItem('favorites')) || [];
+const handleUpdateFavorites = (action: string, stockNumber: string, setFavoriteItem: (isfavorite: boolean) => void) => () => {
+    let favoriteList = JSON.parse(localStorage.getItem('favorites') || '[]') || [];
     const isActionSave = action === 'Save';
     if(isActionSave) {
         favoriteList.push(stockNumber)
@@ -32,9 +34,9 @@ const handleUpdateFavorites = (action, stockNumber, setFavoriteItem) => () => {
     setFavoriteItem(isActionSave);
 }
 
-const CarDetails = (props) => {
-    const { stockNumber } = useParams();
-    const favoriteList = JSON.parse(localStorage.getItem('favorites'));
+const CarDetails = (props: CarDetailsInterface) => {
+    const { stockNumber = '' } = useParams<{stockNumber?: string}>();
+    const favoriteList = JSON.parse(localStorage.getItem('favorites') || '[]');
     const [ isFavoriteItem, setFavoriteItem ] = useState(isItemInFavoriteList(favoriteList, stockNumber));
     const classes = useStyles();
     const { car, fetchCarDetails } = props;
@@ -83,17 +85,8 @@ const mapDispatchToProps = {
     fetchCarDetails,
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: RootReducerSate) => ({
     car: state.cars.carDetails
 })
 
-CarDetails.propTypes = {
-    car: PropTypes.array,
-    fetchCarDetails: PropTypes.func,
-};
-
-CarDetails.defaultProps = {
-    car: [],
-    fetchCarDetails: _noop,
-};
 export default connect(mapStateToProps, mapDispatchToProps)(CarDetails);

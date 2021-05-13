@@ -8,4 +8,5 @@ const rootReducer = combineReducers({
     
 });
 
+export type RootReducerSate = ReturnType<typeof rootReducer>;
 export default rootReducer;

@@ -1,4 +1,5 @@
-export function getCarListQueryString(filterState) {
+import { FilterState } from '../interfaces.constants'
+export function getCarListQueryString(filterState: FilterState) {
     const {
         color,
         manufacturer,

@@ -1,4 +1,5 @@
 import ACTION_TYPES  from '../actions/actionTypes';
+import { AnyAction } from 'redux';
 const initialState = {
     colors: [],
     manufacturers: [],
@@ -10,7 +11,7 @@ const initialState = {
     }
 }
 
-const filters = (state = initialState, action) => {
+const filters = (state = initialState, action: AnyAction) => {
   switch(action.type) {
     case ACTION_TYPES.FETCH_COLORS: return {
         ...state,

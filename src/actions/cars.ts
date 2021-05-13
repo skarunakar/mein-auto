@@ -1,4 +1,5 @@
 import ACTION_TYPES from './actionTypes';
+import { Dispatch } from 'redux';
 
 //utils
 import getDataFromResponse from '../utils/getDataFromResponse';
@@ -11,7 +12,9 @@ import { getCars, getCarByStockNumber } from "../services/carsInfo";
 import carListReader from '../readers/carList';
 import carByStockNumberReader from '../readers/carByStockNumber';
 
-const saveCarList = (dispatch) => (carsRepsonse) => {
+import { FilterState } from '../interfaces.constants';
+
+const saveCarList = (dispatch: Dispatch) => (carsRepsonse: object) => {
     const carsData = getDataFromResponse(carsRepsonse);
     const carList = carListReader.cars(carsData);
     const totalPageCount = carListReader.totalPageCount(carsData);
@@ -26,7 +29,7 @@ const saveCarList = (dispatch) => (carsRepsonse) => {
     })
 }
 
-const saveCarDetails = (dispatch) => (carDetailsRepsonse) => {
+const saveCarDetails = (dispatch: Dispatch) => (carDetailsRepsonse: object) => {
     const carData = getDataFromResponse(carDetailsRepsonse);
     const carDetails = carByStockNumberReader.car(carData);
     dispatch({
@@ -37,15 +40,15 @@ const saveCarDetails = (dispatch) => (carDetailsRepsonse) => {
     })
 }
 
-export const fetchCarList = (filterState) =>  {
-    return function(dispatch){
+export const fetchCarList = (filterState: FilterState) =>  {
+    return function(dispatch: Dispatch){
         const queryString = getCarListQueryString(filterState);
         getCars(queryString).then(saveCarList(dispatch))
     }
 }
 
-export const fetchCarDetails = (stockNumber, queryString) =>  {
-    return function(dispatch){
+export const fetchCarDetails = (stockNumber: string, queryString: string) =>  {
+    return function(dispatch: Dispatch){
         getCarByStockNumber(stockNumber, queryString).then(saveCarDetails(dispatch))
     }
 }

@@ -1,4 +1,5 @@
 import ACTION_TYPES from '../actions/actionTypes';
+import { AnyAction } from 'redux';
 
 const initialState = {
     carList: [],
@@ -6,7 +7,7 @@ const initialState = {
     isLoading: true,
 }
 
-const cars = (state = initialState, action) => {
+const cars = (state = initialState, action: AnyAction) => {
     switch(action.type) {
         case ACTION_TYPES.FETCH_CAR_LIST: 
             return {

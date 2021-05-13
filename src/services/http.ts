@@ -11,8 +11,8 @@ const httpClient = axios.create({
 });
 
 const http = {
-  get: (url, params) => httpClient.get(url, params),
-  post: (url, params) => httpClient.post(url, params),
+  get: (url: string) => httpClient.get(url),
+  post: (url: string) => httpClient.post(url),
 }
 
 export default http;
